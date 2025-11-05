@@ -13,12 +13,43 @@
 <body>
     <div id="root"></div>
     <script type="text/babel">
+        const { useState } = React;
         // Buoc 1: THIẾT LẬP CẤU TRÚC REACT CƠ BẢN
+
+        // Component SearchForm
+        function SearchForm() {
+            return <input type="text" placeholder="Tìm kiếm theo name, username" />
+        }
+
+        // Component AddUser
+        function AddUser() {
+            return <button className="btn-add"></button>;
+        }
+
+        // Component ResultTable
+        function ResultTable() {
+            return <div>Đây là bảng kết quả...</div>
+        }
+
+        // Buoc 2: TỔ CHỨC COMPONENT VÀ STATE TẬP TRUNG
         // Component App
         function App() {
+            const [keyword, setKeyword] = useState("");
+            const [newUser, setNewUser] = useState(null);
             return (
                 <div>
                     <h1>Quản lý người dùng</h1>
+
+                    <div>
+                        <SearchForm onChangeValue={setKeyword} />
+                        <AddUser onAdd={setNewUser} />
+                    </div>
+
+                    <ResultTable
+                        keyword={keyword}
+                        user={newUser}
+                        onAdded={() => setNewUser(null)}
+                    />
                 </div>
             );
         }
