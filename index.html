@@ -16,9 +16,16 @@
         const { useState } = React;
         // Buoc 1: THIẾT LẬP CẤU TRÚC REACT CƠ BẢN
 
+        // Buoc 3: CHỨC NĂNG TÌM KIẾM (SEARCHFORM)
         // Component SearchForm
         function SearchForm() {
-            return <input type="text" placeholder="Tìm kiếm theo name, username" />
+            return (
+                <input 
+                    type="text" 
+                    placeholder="Tìm kiếm theo name, username"
+                    onChange={(e) => onChangeValue(e.target.value)}    
+                />
+            );
         }
 
         // Component AddUser
@@ -40,7 +47,7 @@
                 <div>
                     <h1>Quản lý người dùng</h1>
 
-                    <div>
+                    <div className="search-add-container">
                         <SearchForm onChangeValue={setKeyword} />
                         <AddUser onAdd={setNewUser} />
                     </div>
